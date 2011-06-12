@@ -1,0 +1,34 @@
+= Craigslist Plugin
+
+A plugin useful for aggregating Craigslist postings, worldwide.  Originally written to collect "internet engineer" jobs specifically for Ruby on Rails telecommuting.
+
+== Setup
+
+Requirements:
+  Rails 3.x
+
+Create the craigslist_postings table
+  rails generate rails3_settings
+  
+Migrate
+  rake db:migrate
+
+== Usage
+
+Instantiate a Craigslist::Parser object, and call get_postings
+  parser = Craigslist::Parser.new
+  postings = parser.get_postings
+  
+If you want to look aggregate other types of jobs you'll need to pass in the search_path.  For example, let's say you want to look for "systems / network" contract jobs and search for "linux" within that category.
+  parser = Craigslist::Parser.new(:search_path => "/search/sad?query=linux&srchType=A&addTwo=contract&format=rss")
+
+In the above search_path we dissect:
+* "sad" for the job type "systems / network"
+* "query=linux" for the search term
+* "addTwo=contract" for contracting jobs only
+
+The way you determine the search_path parameters is to go to a state or area specific craigslist page and walk through a manual HTML search first.  After you perform a manual search using the form, take note of the URL in the address bar.  Just copy everything from "/search" to the end of the query string, and use that as your "search_path" passed into the Craigslist::Parser.
+
+We hope someone finds it useful.
+
+Copyright (c) 2011 Midwire Technologies, LLC, released under the MIT license
