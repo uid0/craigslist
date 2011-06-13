@@ -29,10 +29,12 @@ Then subclass the Craigslist::Parser model in RAILS_ROOT/app/models/my_parser.rb
 
     def before_get_postings
       puts ">>> BEFORE_GET"
+      # Code here gets executed BEFORE "get_postings" is called
     end
 
     def after_get_postings
       puts ">>> AFTER_GET"
+      # Code here gets executed AFTER "get_postings" is called
     end
   end
 
