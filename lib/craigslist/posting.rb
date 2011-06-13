@@ -6,9 +6,8 @@ module Craigslist
     validates :link, :presence => true
     validates :description, :presence => true
 
-    # Determine and document:
-    # * contact methods
-    # ...for this posting
+    # Within the craigslist posting, determine and document:
+    # * contact information
     # Puts the phone number in the format XXX.XXX.XXXX, and extracts the email if one exists
     def process_contact_info
       phone_regex = /\(?\d{3}+\)?[\s\-\.]*\d{3}[\s\-\.]*\d{4}/
