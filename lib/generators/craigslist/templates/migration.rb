@@ -7,9 +7,12 @@ class AddCraigslistPostingsTable < ActiveRecord::Migration
       t.datetime :posted_at
       t.string :language
       t.string :rights
+      t.string :phone
+      t.string :email
       t.timestamps
     end
     add_index :craigslist_postings, [:title, :posted_at], :unique => true
+    add_index :craigslist_postings, :email
   end
 
   def self.down
