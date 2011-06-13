@@ -21,9 +21,9 @@ Instantiate a Craigslist::Parser object, and call get_postings
 
 == Rails Usage
 
-Install Tobi's delayed_job[https://github.com/tobi/delayed_job] gem
+The Craigslist::Parser::get_postings method is a long operation.  We recommend installing Tobi's delayed_job[https://github.com/tobi/delayed_job] gem, so your user's don't wait for 10 minutes.  After all, you are searching through craigslist worldwide!
 
-Subclass the Craigslist::Parser model in RAILS_ROOT/app/models/my_parser.rb
+Then subclass the Craigslist::Parser model in RAILS_ROOT/app/models/my_parser.rb
   class MyParser < Craigslist::Parser
     handle_asynchronously :get_postings
 
@@ -35,7 +35,9 @@ Subclass the Craigslist::Parser model in RAILS_ROOT/app/models/my_parser.rb
       puts ">>> AFTER_GET"
     end
   end
-  
+
+== Other Types of Postings
+
 If you want to aggregate other types of jobs you'll need to pass in the :search_path.  For example, let's say you want to look for "systems / network" contract jobs and search for "linux" within that category.
   parser = Craigslist::Parser.new(:search_path => "/search/sad?query=linux&srchType=A&addTwo=contract&format=rss")
 
