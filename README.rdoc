@@ -8,7 +8,7 @@ Requirements:
   Rails 3.x
 
 Create the craigslist_postings table
-  rails generate rails3_settings
+  rails generate craigslist
   
 Migrate
   rake db:migrate
@@ -18,8 +18,25 @@ Migrate
 Instantiate a Craigslist::Parser object, and call get_postings
   parser = Craigslist::Parser.new
   postings = parser.get_postings
+
+== Rails Usage
+
+Install Tobi's delayed_job[https://github.com/tobi/delayed_job] gem
+
+Subclass the Craigslist::Parser model in RAILS_ROOT/app/models/my_parser.rb
+  class MyParser < Craigslist::Parser
+    handle_asynchronously :get_postings
+
+    def before_get_postings
+      puts ">>> BEFORE_GET"
+    end
+
+    def after_get_postings
+      puts ">>> AFTER_GET"
+    end
+  end
   
-If you want to look aggregate other types of jobs you'll need to pass in the search_path.  For example, let's say you want to look for "systems / network" contract jobs and search for "linux" within that category.
+If you want to aggregate other types of jobs you'll need to pass in the :search_path.  For example, let's say you want to look for "systems / network" contract jobs and search for "linux" within that category.
   parser = Craigslist::Parser.new(:search_path => "/search/sad?query=linux&srchType=A&addTwo=contract&format=rss")
 
 In the above search_path we dissect:
