@@ -48,6 +48,10 @@ In the above search_path we dissect:
 
 The way you determine the search_path parameters is to go to a state or area specific craigslist page and walk through a manual HTML search first.  After you perform a manual search using the form, take note of the URL in the address bar.  Just copy everything from "/search" to the end of the query string, and use that as your "search_path" passed into the Craigslist::Parser.
 
+=== Updates
+
+Fork it, tweak it, check it in and send me a pull request.  I'll merge it if it makes sense.
+
 We hope someone finds it useful.
 
 Copyright (c) 2011 Midwire Technologies, LLC, released under the MIT license
