@@ -1,5 +1,7 @@
 = Craigslist Plugin
 
+http://travis-ci.org/midwire/craigslist.png
+
 A plugin useful for aggregating Craigslist postings, worldwide.  Originally written to collect "internet engineer" jobs specifically for Ruby on Rails telecommuting.
 
 == Setup
@@ -9,7 +11,7 @@ Requirements:
 
 Create the craigslist_postings table
   rails generate craigslist
-  
+
 Migrate
   rake db:migrate
 
